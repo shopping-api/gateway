@@ -1,5 +1,5 @@
 # Gateway
-[![Build and test](https://github.com/groot-mg/gateway/actions/workflows/gateway-ci.yml/badge.svg)](https://github.com/groot-mg/gateway/actions/workflows/gateway-ci.yml) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=shopping-api_gateway&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=shopping-api_gateway) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/groot-mg/gateway/blob/main/LICENSE)
+[![Build and test](https://github.com/groot-mg/gateway/actions/workflows/gateway-ci.yml/badge.svg)](https://github.com/groot-mg/gateway/actions/workflows/gateway-ci.yml) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=groot-mg_gateway&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=groot-mg_gateway) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/groot-mg/gateway/blob/main/LICENSE)
 
 API Gateway is a tool that provides routing mechanisms to microservices applications as a way of hiding multiple services behind a single facade.
 
