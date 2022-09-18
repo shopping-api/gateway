@@ -75,7 +75,8 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
-                    "com/generoso/gateway/GatewayApplication.class"
+                    "com/generoso/gateway/GatewayApplication.class",
+                    "**Config.class"
             ])
         }))
     }
