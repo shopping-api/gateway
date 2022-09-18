@@ -10,11 +10,8 @@ import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import java.io.IOException;
-import java.net.Socket;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
-
 
 @Slf4j
 @Configuration
@@ -36,6 +33,7 @@ public class LocalWiremockServer {
         wireMockServer.start();
         log.info("Wiremock is running");
     }
+
     @PreDestroy
     public void shutDown() {
         log.info("Wiremock is shutting down");
