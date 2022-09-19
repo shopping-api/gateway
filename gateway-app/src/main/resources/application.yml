@@ -7,6 +7,7 @@ spring:
     gateway:
       default-filters:
         - TokenRelay # this filter forwards the jwt access token from keycloak to downstream
+        - RemoveRequestHeader=Cookie
       routes:
         - id: sales-catalog
           uri: lb://sales-catalog
