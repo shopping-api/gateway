@@ -1,8 +1,21 @@
+logging:
+  level:
+    reactor.netty: INFO
+    org.springframework.cloud: TRACE
+
+server:
+  port: 8080
+
 spring:
   jmx:
     enable: false
   application:
     name: gateway
+  sleuth:
+    sampler:
+      probability: 1.0 # 100%
+  zipkin:
+    base-url: ${ZIPKIN_URL:http://localhost:9411}
   cloud:
     gateway:
       default-filters:
@@ -24,9 +37,6 @@ spring:
         provider:
           keycloak:
             issuer-uri: ${KEYCLOAK_URL:http://localhost:8081}/realms/${KEYCLOAK_REALM:shopping-api}
-
-server:
-  port: 8080
 
 eureka:
   instance:
@@ -56,12 +66,3 @@ management:
       enabled: true
     db:
       enabled: true
-
-logging:
-  level:
-    reactor:
-      netty: INFO
-    org:
-      springframework:
-        cloud:
-          gateway: TRACE
