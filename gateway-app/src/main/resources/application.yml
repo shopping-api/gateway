@@ -1,8 +1,8 @@
-logging:
-  level:
-    reactor.netty: INFO
-    org.springframework.cloud: TRACE
-    org.springframework.web: DEBUG
+#logging:
+#  level:
+#    reactor.netty: INFO
+#    org.springframework.cloud: TRACE
+#    org.springframework.web: DEBUG
 
 server:
   port: 8080
@@ -37,7 +37,7 @@ spring:
             scope: openid
         provider:
           keycloak:
-            issuer-uri: ${KEYCLOAK_URL:http://localhost:8081}/realms/${KEYCLOAK_REALM:shopping-api}
+            issuer-uri: ${KEYCLOAK_URL:http://localhost:8180}/realms/${KEYCLOAK_REALM:shopping-api}
 
 eureka:
   instance:
@@ -46,7 +46,7 @@ eureka:
     healthcheck:
       enabled: true
     service-url:
-      defaultZone: http://localhost:8081/eureka
+      defaultZone: ${EUREKA_URL:http://localhost:8081}/eureka
     fetch-registry: true
     register-with-eureka: true
 
