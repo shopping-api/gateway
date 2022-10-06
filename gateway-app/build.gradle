@@ -35,6 +35,7 @@ def commonJarConfigClosure = {
 bootJar commonJarConfigClosure
 
 springBoot {
+    mainClass = "com.generoso.gateway.GatewayApplication"
     buildInfo {
         properties {
             name = rootProject.name
