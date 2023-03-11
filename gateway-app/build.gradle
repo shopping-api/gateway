@@ -14,7 +14,7 @@ jacoco {
 }
 
 ext {
-    set('springCloudVersion', "2021.0.4")
+    set('springCloudVersion', "2022.0.1")
 }
 
 java {
@@ -51,6 +51,7 @@ springBoot {
 
 repositories {
     mavenCentral()
+    maven { url 'https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates' }
 }
 
 dependencies {
