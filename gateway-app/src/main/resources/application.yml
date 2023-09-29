@@ -66,6 +66,4 @@ management:
       enabled: true
   health:
     diskspace:
-      enabled: true
-    db:
-      enabled: true
+      enabled: false
