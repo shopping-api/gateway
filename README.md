@@ -26,8 +26,8 @@ API Gateway depends on `Keycloak` and `Service Discovery`, so wiremock is used t
 <img src="./images/functional-tests.jpg"  alt="functional tests dependencies"/>
 
 ### Run
-
-<span style="color:red;">It has dependencies and does not run without the dependencies</span>
+> [!WARNING]  
+> It has dependencies and does not run without the dependencies
 
 Dependencies:
 * `Keycloak` on port 8180
