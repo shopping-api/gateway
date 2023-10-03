@@ -16,6 +16,10 @@ spring:
           uri: lb://sales-catalog
           predicates:
             - Path=/sales-catalog/**
+        - id: basket-service
+          uri: lb://basket-service
+          predicates:
+            - Path=/basket-service/**
   security:
     oauth2:
       client:
