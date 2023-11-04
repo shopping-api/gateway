@@ -7,6 +7,7 @@ plugins {
     id 'pl.allegro.tech.build.axion-release' version '1.15.5'
     id 'jacoco'
     id 'application'
+    id 'io.freefair.lombok'
     id 'java'
 }
 
@@ -63,6 +64,9 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
     runtimeOnly "io.micrometer:micrometer-registry-prometheus"
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
 }
 
 dependencyManagement {
