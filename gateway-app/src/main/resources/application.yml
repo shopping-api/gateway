@@ -61,6 +61,17 @@ management:
     diskspace:
       enabled: false
 
+springdoc:
+  api-docs:
+    groups:
+      enabled: true
+    enabled: true
+    path: /private/api-docs
+  show-actuator: false # there is a bug on security library with actuator and gateway together
+  swagger-ui:
+    enabled: true
+    path: /private/swagger
+
 #logging:
 #  level:
 #    reactor.netty: INFO
