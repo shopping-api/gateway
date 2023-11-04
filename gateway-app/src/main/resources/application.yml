@@ -30,7 +30,7 @@ spring:
             scope: openid
         provider:
           keycloak:
-            issuer-uri: ${KEYCLOAK_URL:http://localhost:8180}/realms/${KEYCLOAK_REALM:shopping-api}
+            issuer-uri: ${KEYCLOAK_URL:http://localhost:8180}/realms/${KEYCLOAK_REALM:groot-mg}
 
 eureka:
   instance:
