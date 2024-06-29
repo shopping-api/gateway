@@ -1,0 +1,51 @@
+[versions]
+## Plugin versions
+springVersion = '3.3.1'
+springCloudVersion = '2022.0.4'
+springDependencyManagementVersion = '1.1.5'
+gitPropertiesVersion = '2.4.2'
+axionReleaseVersion = '1.17.2'
+lombokVersion = '8.6'
+sonarqubeVersion = '5.0.0.4638'
+jacocoVersion = '0.8.12'
+
+## Library versions
+springDocVersion = '2.2.0'
+
+## Test Libraries
+cucumberVersion = '7.18.0'
+jacksonDataBindingVersion = '2.17.1'
+wiremockStandaloneVersion = '3.0.1'
+googleGuavaVersion = '33.2.1-jre'
+
+[plugins]
+spring-boot = { id = 'org.springframework.boot', version.ref = 'springVersion' }
+spring-dependency-management = { id = 'io.spring.dependency-management', version.ref = 'springDependencyManagementVersion' }
+git-properties = { id = 'com.gorylenko.gradle-git-properties', version.ref = 'gitPropertiesVersion' }
+axion-release = { id = 'pl.allegro.tech.build.axion-release', version.ref = 'axionReleaseVersion' }
+lombok = { id = 'io.freefair.lombok', version.ref = 'lombokVersion' }
+sonarqube = { id = 'org.sonarqube', version.ref = 'sonarqubeVersion' }
+jacoco = { id = 'jacoco' }
+application = { id = 'application' }
+java = { id = 'java' }
+
+[libraries]
+# managed by spring management plugin
+spring-boot-starter = { module = 'org.springframework.boot:spring-boot-starter' }
+spring-boot-starter-actuator = { module = 'org.springframework.boot:spring-boot-starter' }
+spring-boot-starter-oauth2-client = { module = 'org.springframework.boot:spring-boot-starter-oauth2-client' }
+spring-boot-starter-gateway = { module = 'org.springframework.cloud:spring-cloud-starter-gateway' }
+spring-boot-starter-eureka-client = { module = 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client' }
+micrometer-prometheus = { module = 'io.micrometer:micrometer-registry-prometheus' }
+
+# non-managed by spring management plugin
+spring-boot-starter-docs-webflux = { module = 'org.springdoc:springdoc-openapi-starter-webflux-ui', version.ref = 'springDocVersion' }
+
+# Test libraries
+spring-boot-starter-test = { module = 'org.springframework.boot:spring-boot-starter-test' }
+reactor-test = { module = 'io.projectreactor:reactor-test' }
+cucumber-spring = { module = 'io.cucumber:cucumber-spring', version.ref = 'cucumberVersion' }
+cucumber-java = { module = 'io.cucumber:cucumber-java', version.ref = 'cucumberVersion' }
+jackson-databing = { module = 'com.fasterxml.jackson.core:jackson-databind', version.ref = 'jacksonDataBindingVersion' }
+wiremock-standalone = {module = 'com.github.tomakehurst:wiremock-jre8-standalone', version.ref = 'wiremockStandaloneVersion'}
+google-guava = {module = 'com.google.guava:guava', version.ref = 'googleGuavaVersion'}

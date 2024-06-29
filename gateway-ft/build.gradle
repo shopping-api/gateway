@@ -1,63 +1,55 @@
 plugins {
-    id 'org.springframework.boot' version '3.3.1'
-    id 'io.spring.dependency-management' version '1.1.5'
-    id "io.freefair.lombok"
-    id 'java'
-}
-
-ext {
-    cucumberVersion = '7.18.0'
-    jacksonDataBinding = '2.17.1'
-    wiremockStandalone = '3.0.1'
-    googleGuavaVersion = '31.1-jre'
+	alias(libs.plugins.spring.boot)
+	alias(libs.plugins.spring.dependency.management)
+	alias(libs.plugins.lombok)
+	alias(libs.plugins.java)
 }
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    testImplementation project(":gateway-app")
+	testImplementation project(":gateway-app")
 
-    testImplementation "io.cucumber:cucumber-spring:${cucumberVersion}"
-    testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
-    testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
+	testImplementation(libs.cucumber.spring)
+	testImplementation(libs.cucumber.java)
 
-    testImplementation "com.fasterxml.jackson.core:jackson-databind:${jacksonDataBinding}"
+	testImplementation(libs.jackson.databing)
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation "com.google.guava:guava:33.2.1-jre"
-    testImplementation "com.github.tomakehurst:wiremock-jre8-standalone:${wiremockStandalone}"
+	testImplementation(libs.spring.boot.starter.test)
+	testImplementation(libs.google.guava)
+	testImplementation(libs.wiremock.standalone)
 }
 
 dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2023.0.2"
-    }
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:2023.0.2"
+	}
 }
 
 configurations {
-    cucumberRuntime {
-        extendsFrom testImplementation
-    }
+	cucumberRuntime {
+		extendsFrom testImplementation
+	}
 }
 
-task cucumber {
-    def profile = findProperty("spring.profiles.active") ?: "local"
-    dependsOn processTestResources, compileTestJava
+tasks.register('cucumber') {
+	def profile = findProperty("spring.profiles.active") ?: "local"
+	dependsOn processTestResources, compileTestJava
 
-    doLast {
-        javaexec {
-            systemProperties = ['spring.profiles.active': profile]
-            main = "io.cucumber.core.cli.Main"
-            classpath = project.sourceSets.test.runtimeClasspath
-            args = ['--tags', 'not @ignore',
-                    '--plugin', 'pretty',
-                    '--plugin', 'html:reports/report.html',
-                    '--glue', 'com.generoso.ft.gateway',
-                    'classpath:features']
-        }
-    }
+	doLast {
+		javaexec {
+			systemProperties = ['spring.profiles.active': profile]
+			main = "io.cucumber.core.cli.Main"
+			classpath = project.sourceSets.test.runtimeClasspath
+			args = ['--tags', 'not @ignore',
+							'--plugin', 'pretty',
+							'--plugin', 'html:reports/report.html',
+							'--glue', 'com.generoso.ft.gateway',
+							'classpath:features']
+		}
+	}
 }
 
 bootJar.enabled = false
