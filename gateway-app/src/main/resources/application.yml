@@ -3,7 +3,7 @@ server:
 
 spring:
   jmx:
-    enable: false
+    enabled: false
   application:
     name: gateway
   cloud:
