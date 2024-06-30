@@ -16,16 +16,12 @@ on:
       logLevel:
         description: 'Log level'
         required: true
-        default: 'debug'
+        default: 'info'
         type: choice
         options:
           - info
           - warning
           - debug
-
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: 'groot-mg/test/gateway'
 
 jobs:
   build-and-unit-tests:
@@ -142,15 +138,19 @@ jobs:
       - name: Log in to the Container registry
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set repository basename
+        id: set-basename
+        run: echo "REPO_BASENAME=$(basename ${{ github.repository }})" >> $GITHUB_ENV
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ghcr.io/groot-mg/test/${{ env.REPO_BASENAME }}
           tags: |
             type=sha
 
