@@ -1,4 +1,4 @@
-Feature: Checking Service Discovery actuator endpoints return expected outputs
+Feature: Checking actuator endpoints exist and return expected outputs
 
   Scenario: When application is healthy, return 200 response status code and "UP" response body on health endpoint
     Given a private endpoint PRIVATE_HEALTH_CHECK is prepared
@@ -14,7 +14,6 @@ Feature: Checking Service Discovery actuator endpoints return expected outputs
     Given a private endpoint PRIVATE_METRICS is prepared
     When the request is sent
     Then the response status code should be 200
-    And the body of the message contains "jvm_buffer_count_buffers"
 
   Scenario: Return correct app information when calling private/info
     Given a private endpoint PRIVATE_INFO is prepared

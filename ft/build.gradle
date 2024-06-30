@@ -33,7 +33,6 @@ configurations {
 }
 
 tasks.register('cucumber') {
-	def profile = findProperty("spring.profiles.active") ?: "local"
 	dependsOn processTestResources, compileTestJava
 
 	doLast {

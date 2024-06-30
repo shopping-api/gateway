@@ -48,9 +48,11 @@ public class PrivateStepDefinitions {
         componentNames.forEach(componentName -> assertThat(components.get(componentName).get("status").asText()).isEqualTo(status));
     }
 
-    @Then("the body of the message contains {string}")
-    public void theBodyOfTheMessageContains(String expectedResponseBodyContent) {
-        assertTrue(scenarioState.getActualResponse().body().contains(expectedResponseBodyContent));
+    @Then("the body of the message contains the metrics:")
+    public void theBodyOfTheMessageContains(List<String> metricNames) {
+        metricNames.forEach(name -> {
+            assertTrue(scenarioState.getActualResponse().body().contains(name));
+        });
     }
 
     @Then("it should return (.*) information containing the following keys and values:$")
