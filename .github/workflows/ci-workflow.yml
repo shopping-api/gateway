@@ -3,7 +3,7 @@ name: CI Workflow
 on:
   push:
     branches: [ main ]
-    paths: &paths
+    paths:
       - 'gradle/**'
       - '**.gradle'
       - 'gradle.properties'
@@ -15,7 +15,16 @@ on:
       - '.github/workflows/ci-workflow.yml'
   pull_request:
     branches: [ main ]
-    paths: *paths
+    paths:
+      - 'gradle/**'
+      - '**.gradle'
+      - 'gradle.properties'
+      - 'app/**'
+      - 'ft/**'
+      - 'mocks/**'
+      - 'docker-compose.yml'
+      - 'lombok.config'
+      - '.github/workflows/ci-workflow.yml'
 
   workflow_dispatch:
     inputs:
