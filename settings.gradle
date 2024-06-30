@@ -1,4 +1,3 @@
 rootProject.name = 'gateway'
-include 'gateway-app'
-include 'gateway-ft'
-
+include 'app'
+include 'ft'

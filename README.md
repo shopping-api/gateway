@@ -16,6 +16,13 @@ Build with gradle (build + unit tests):
 ```
 
 ### Functional tests
+
+Before running the ft, it is required to have wiremock and app running, so run:
+
+```shell
+docker-compose -d up
+```
+
 Run functional-tests:
 ```
 ./gradlew cucumber
@@ -25,9 +32,9 @@ API Gateway depends on `Keycloak` and `Service Discovery`, so wiremock is used t
 
 <img src="./images/functional-tests.jpg"  alt="functional tests dependencies"/>
 
-### Run
-> [!WARNING]  
-> It has dependencies and does not run without the dependencies
+### Run with other apps
+> [!WARNING]
+> It has dependencies and does not run without the dependencies running
 
 Dependencies:
 * `Keycloak` on port 8180

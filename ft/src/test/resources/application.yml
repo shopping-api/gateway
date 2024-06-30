@@ -1,8 +1,6 @@
 spring:
-  jmx:
-    enable: false
   application:
-    name: gateway-functional-tests
+    name: gateway-ft
   profiles:
     active: local
 
