@@ -24,8 +24,6 @@ on:
           - debug
 
 env:
-  APP_NAME: 'gateway'
-  APP_PORT: '8080'
   REGISTRY: ghcr.io
   IMAGE_NAME: 'groot-mg/test/gateway'
 
@@ -53,11 +51,15 @@ jobs:
           path: |
             app/build/reports/tests/test/**/*
 
+      - name: Set repository basename
+        id: set-basename
+        run: echo "REPO_BASENAME=$(basename ${{ github.repository }})" >> $GITHUB_ENV
+
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
           name: app-jar
-          path: app/build/libs/${{env.APP_NAME}}.jar
+          path: app/build/libs/${{ env.REPO_BASENAME }}.jar
 
   functional-tests:
     needs: build-and-unit-tests
@@ -79,7 +81,24 @@ jobs:
           path: app/build/libs/
 
       - name: Start docker containers (docker-compose)
-        run: docker-compose up -d --wait
+        run: docker-compose up -d
+
+      - name: Wait for services to be healthy
+        run: |
+          echo "Waiting for services to be healthy..."
+          MAX_ATTEMPTS=5
+          ATTEMPT=0
+          until [ "$ATTEMPT" -ge "$MAX_ATTEMPTS" ]
+          do
+            docker-compose ps | grep -q "healthy" && break
+            ATTEMPT=$((ATTEMPT+1))
+            echo "Attempt $ATTEMPT/$MAX_ATTEMPTS: Services not healthy yet, waiting..."
+            sleep 5
+          done
+          if [ "$ATTEMPT" -ge "$MAX_ATTEMPTS" ]; then
+            echo "Services did not become healthy after $MAX_ATTEMPTS attempts."
+            exit 1
+          fi
 
       - name: Run functional tests
         run: ./gradlew --no-daemon :ft:cucumber
@@ -92,15 +111,22 @@ jobs:
           path: |
             ft/reports/cucumber-report.html
 
-      - name: View App logs of Docker container
-        if: always()
-        run: docker logs app
+      - name: Print Docker container logs
+        run: |
+          container_ids=$(docker ps --format '{{.ID}}')
+
+          for container_id in $container_ids; do
+            echo "Logs for container $container_id:"
+            docker logs $container_id
+            echo "------------------------------------------"
+          done
 
       - name: Stop Docker Compose
         if: always()
         run: docker-compose down
 
   docker-image:
+    if: github.ref == 'refs/heads/main'
     needs: functional-tests
     runs-on: ubuntu-latest
     steps:

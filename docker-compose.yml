@@ -13,7 +13,7 @@ services:
       retries: 3
       start_period: 10s
     volumes:
-      - ./mocks/mappings:/home/wiremock/mappings
+      - ./mocks/${MOCKS_DIRECTORY:-docker}/mappings:/home/wiremock/mappings
 #      - .mocks/__files:/home/wiremock/__files
 
   app:

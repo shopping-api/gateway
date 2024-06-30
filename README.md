@@ -32,6 +32,16 @@ API Gateway depends on `Keycloak` and `Service Discovery`, so wiremock is used t
 
 <img src="./images/functional-tests.jpg"  alt="functional tests dependencies"/>
 
+### Debug app locally
+
+To be able to debug the application locally, we need to run the mocks with a different parameter, so run via command line:
+
+```shell
+MOCKS_DIRECTORY=local docker-compose up -d --build mocks
+```
+
+And then it is possible to start the application in Intellij in Debug mode.
+
 ### Run with other apps
 > [!WARNING]
 > It has dependencies and does not run without the dependencies running

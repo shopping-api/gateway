@@ -1,24 +1,18 @@
 package com.generoso.ft.gateway.config;
 
 
-import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
-
 @Slf4j
 @Configuration
 @Profile("local")
 public class LocalWiremockServer {
-
-    private WireMockServer wireMockServer;
 
     @Value(value = "${wiremock.host}")
     private String host;
@@ -28,10 +22,9 @@ public class LocalWiremockServer {
 
     @PostConstruct
     public void startUp() {
-        log.info("Trying to start a wiremock instance for: {}. Port: {}", host, port);
-        wireMockServer = new WireMockServer(options().bindAddress(host).port(port));
-        wireMockServer.start();
-        log.info("Wiremock is running");
+        log.info("Trying to start a wiremock instance for: {}, port: {}", host, port);
+        WireMock.configureFor(host, port);
+        log.info("Wiremock is configured");
     }
 
     @PreDestroy

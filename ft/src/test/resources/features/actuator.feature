@@ -21,8 +21,8 @@ Feature: Checking Service Discovery actuator endpoints return expected outputs
     When the request is sent
     Then the response status code should be 200
     And it should return build information containing the following keys and values:
-      | artifact | gateway-app  |
-      | name     | gateway  |
+      | artifact | app          |
+      | name     | gateway      |
       | group    | com.generoso |
     And the response body contains:
       | git   |
