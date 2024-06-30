@@ -24,7 +24,7 @@ public class LogUtils {
 
     public static void assertMessageWasInLogs(ListAppender<ILoggingEvent> appender, String message, Level level) {
         assertThat(appender.list)
-                .extracting(ILoggingEvent::getFormattedMessage, ILoggingEvent::getLevel)
-                .contains(Tuple.tuple(message, level));
+            .extracting(ILoggingEvent::getFormattedMessage, ILoggingEvent::getLevel)
+            .contains(Tuple.tuple(message, level));
     }
 }

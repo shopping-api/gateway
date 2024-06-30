@@ -23,8 +23,8 @@ public class RequestLoggingFilter implements WebFilter {
 
         log.info("Incoming request {} {}", method, path);
         return chain.filter(exchange)
-                .doFinally(signalType ->
-                        log.info("Returning request with status code: {}", response.getStatusCode())
-                );
+            .doFinally(signalType ->
+                log.info("Returning request with status code: {}", response.getStatusCode())
+            );
     }
 }

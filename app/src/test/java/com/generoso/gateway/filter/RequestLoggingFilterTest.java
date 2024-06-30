@@ -36,8 +36,8 @@ class RequestLoggingFilterTest {
 
         // Act
         StepVerifier.create(new RequestLoggingFilter().filter(exchange, chain))
-                .expectComplete()
-                .verify();
+            .expectComplete()
+            .verify();
 
         // Assert
         assertMessageWasInLogs(listAppender, "Incoming request GET /example", Level.INFO);
