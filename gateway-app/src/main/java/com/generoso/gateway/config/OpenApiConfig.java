@@ -22,23 +22,23 @@ public class OpenApiConfig {
 
     private Info apiInfo() {
         return new Info()
-                .title("Gateway")
-                .description("Services entry-point")
-                .version(buildProperties.getVersion())
-                .contact(apiContact())
-                .license(apiLicence());
+            .title("Gateway")
+            .description("Services entry-point")
+            .version(buildProperties.getVersion())
+            .contact(apiContact())
+            .license(apiLicence());
     }
 
     private License apiLicence() {
         return new License()
-                .name("MIT Licence")
-                .url("https://opensource.org/licenses/mit-license.php");
+            .name("MIT Licence")
+            .url("https://opensource.org/licenses/mit-license.php");
     }
 
     private Contact apiContact() {
         return new Contact()
-                .name("Mauricio Generoso")
-                .email("mauriciomarquesgeneroso@gmail.com")
-                .url("https://github.com/mauriciogeneroso");
+            .name("Mauricio Generoso")
+            .email("mauriciomarquesgeneroso@gmail.com")
+            .url("https://github.com/mauriciogeneroso");
     }
 }

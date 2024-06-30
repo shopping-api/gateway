@@ -2,8 +2,6 @@ package com.generoso.gateway.config;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.gateway.config.PropertiesRouteDefinitionLocator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -21,17 +19,14 @@ import java.util.regex.Pattern;
 @Configuration
 public class SecurityConfig {
 
-    @Autowired
-    private PropertiesRouteDefinitionLocator routeDefinition;
-
     @Bean
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
         http.csrf(CsrfSpec::disable);
 
         http.authorizeExchange(authorizeExchangeSpec ->
-                authorizeExchangeSpec.matchers(exchange ->
-                                RegexRequestMatcher.matches(".*/private/.*", exchange)).permitAll()
-                        .anyExchange().authenticated()
+            authorizeExchangeSpec.matchers(exchange ->
+                    RegexRequestMatcher.matches(".*/private/.*", exchange)).permitAll()
+                .anyExchange().authenticated()
         );
 
         http.oauth2Login(Customizer.withDefaults());
@@ -53,9 +48,9 @@ public class SecurityConfig {
             var matcher = pattern.matcher(uri);
             var matches = matcher.matches();
             return Mono.just(matches)
-                    .flatMap(m -> Boolean.TRUE.equals(m) ?
-                            ServerWebExchangeMatcher.MatchResult.match()
-                            : ServerWebExchangeMatcher.MatchResult.notMatch());
+                .flatMap(m -> Boolean.TRUE.equals(m) ?
+                    ServerWebExchangeMatcher.MatchResult.match()
+                    : ServerWebExchangeMatcher.MatchResult.notMatch());
         }
 
         private static Pattern getPattern(String regex) {

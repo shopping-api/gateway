@@ -2,8 +2,6 @@ server:
   port: 8080
 
 spring:
-  jmx:
-    enabled: false
   application:
     name: gateway
   cloud:
@@ -52,7 +50,7 @@ management:
   endpoints:
     web:
       base-path: /private
-      exposure.include: info,health,prometheus,gateway
+      exposure.include: info,health,prometheus,gateway,configprops
       path-mapping.prometheus: /metrics
   info:
     java:
@@ -60,6 +58,13 @@ management:
   health:
     diskspace:
       enabled: false
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    distribution:
+      slo:
+        http.server.requests: 50ms, 100ms, 200ms, 400ms, 600ms, 1000ms, 1500ms, 2000ms
+        http.client.requests: 50ms, 100ms, 200ms, 400ms, 600ms, 1000ms, 1500ms, 2000ms
 
 springdoc:
   api-docs:

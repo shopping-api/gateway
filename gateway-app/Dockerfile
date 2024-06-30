@@ -1,6 +1,6 @@
-FROM amazoncorretto:17-alpine
+FROM eclipse-temurin:21-jre-alpine
 
-MAINTAINER Mauricio Generoso
+LABEL MAINTAINER="Mauricio Generoso"
 
 RUN mkdir /apps
 
