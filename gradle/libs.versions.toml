@@ -8,7 +8,7 @@ lombokVersion = '8.6'
 sonarqubeVersion = '5.0.0.4638'
 
 ## Library versions
-springDocVersion = '2.2.0'
+springDocVersion = '2.6.0'
 
 ## Test Libraries
 cucumberVersion = '7.18.0'
